@@ -5,17 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="openai.js"></script>
+    <script defer src="openai.js"></script>
 </head>
 <body>
     <h1>인공지능 체험 - 김종현 제작</h1>
     <hr>
-    질문
-    <textarea id="txttalk"></textarea>
-    <button onclick="talk()">말하기</button>
-
+    대화하고 싶은 내용
     <hr>
-    답변
-    <textarea id="txtMsg" cols="100" rows="'10"></textarea>
+    <textarea id="txttalk" cols="100" rows="10"></textarea>
+    <br>
+    <button onclick="talk()">말하기</button>
+    <hr><hr>
+    인공지능의 답변
+    <hr>
+    <textarea id="txtMsg" cols="100" rows="20"></textarea>
 </body>
 </html>

@@ -1,7 +1,7 @@
 function talk(){
     userquestion = txttalk.value;
     talkdata = {
-        "model": "gpt-5-nano",
+        "model": aimodel.value,
         "messages": [
           
           { 
@@ -34,4 +34,36 @@ function talk(){
     });
 }
 
-talk()
+function draw(){
+  userquestion = txttalk.value;
+  if(userquestion == ""){
+    userquestion = "hiphop, cat"
+  }
+  txtMsg.value = '그리는중입니다'
+  talkdata = {
+      "prompt" : userquestion,
+      "n" : 1,
+      "size" : "512x512"
+    }
+    
+
+  $.ajax({
+      type: 'POST',
+      url: 'https://api.openai.com/v1/images/generations',
+      headers: {
+              "Content-Type": "application/json",
+              "Authorization": "Bearer "
+          },
+      data: JSON.stringify(talkdata)
+
+  }).done(function(response){
+      console.log(response)
+      txtMsg.value = '성공\n\n'
+      aiimage.src = response.data[0].url
+
+  }).fail(function(error){
+      console.log(error)
+      txtMsg.value = '실패 \n\n' +
+        error.responseJSON.error.message
+  });
+}
